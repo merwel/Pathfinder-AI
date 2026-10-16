@@ -2,26 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Warm Sand & Terracotta editorial theme */
+    --background: 38 33% 97%;          /* #FAF7F2 warm parchment */
+    --foreground: 24 25% 14%;          /* #2D231E deep roasted espresso */
+
+    --card: 40 30% 99%;                /* #FCFAF7 */
+    --card-foreground: 24 25% 14%;
+
+    --popover: 40 30% 99%;
+    --popover-foreground: 24 25% 14%;
+
+    --primary: 16 75% 50%;             /* #DD5928 rich terracotta */
+    --primary-foreground: 40 30% 98%;
+
+    --secondary: 35 25% 91%;           /* #ECE5DA soft sand */
+    --secondary-foreground: 24 25% 18%;
+
+    --muted: 36 20% 92%;
+    --muted-foreground: 25 12% 42%;    /* #75675F */
+
+    --accent: 32 60% 92%;              /* subtle warm amber tint */
+    --accent-foreground: 16 70% 36%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 35 20% 86%;              /* #E1D9CE */
+    --input: 35 20% 86%;
+    --ring: 16 75% 50%;
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Dark editorial travel-magazine mode: deep obsidian, velvet charcoal, glowing terracotta */
+    --background: 24 16% 8%;           /* #161210 deep roasted obsidian */
+    --foreground: 38 25% 93%;          /* #F2EDE6 warm cream text */
+
+    --card: 24 18% 11%;                /* #1E1916 */
+    --card-foreground: 38 25% 93%;
+
+    --popover: 24 18% 11%;
+    --popover-foreground: 38 25% 93%;
+
+    --primary: 16 80% 55%;             /* #E76435 vibrant terracotta */
+    --primary-foreground: 24 16% 8%;
+
+    --secondary: 24 14% 16%;           /* #28221E */
+    --secondary-foreground: 38 25% 90%;
+
+    --muted: 24 12% 16%;
+    --muted-foreground: 35 12% 64%;    /* #A79E96 */
+
+    --accent: 18 35% 18%;              /* subtle dark terracotta tint */
+    --accent-foreground: 16 80% 70%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 24 14% 18%;              /* #2F2723 */
+    --input: 24 14% 18%;
+    --ring: 16 80% 55%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Custom scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.45);
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: hsl(var(--card) / 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--border) / 0.6);
+}
+
+.glass-nav {
+  background: hsl(var(--background) / 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
 }
